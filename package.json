@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "material-ui": "^0.17.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "react-tap-event-plugin": "^2.0.1",
     "recharts": "^0.21.2",
     "webpack": "^2.2.1"
   },
