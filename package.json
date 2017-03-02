@@ -6,6 +6,7 @@
   "dependencies": {
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "recharts": "^0.21.2",
     "webpack": "^2.2.1"
   },
   "devDependencies": {
