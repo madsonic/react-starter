@@ -29,7 +29,7 @@ const config = {
                     'css-loader?modules',
                     'postcss-loader',
                 ]
-            }
+            },
         ],
     },
     devServer: {
