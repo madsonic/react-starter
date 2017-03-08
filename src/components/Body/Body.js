@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import classes from './Body.css';
 
-import ChartContainer from '../Chart/ChartContainer';
+import ChartView from '../Chart/ChartView';
 
 class Body extends Component {
     render() {
         const style = {
-            height: 400,
+            height: 600,
             width: 800,
             margin: 20,
             textAlign: 'center',
@@ -16,7 +16,7 @@ class Body extends Component {
         return(
             <div className={classes.mainBody}>
                 <Paper style={style} zDepth={1}>
-                    <ChartContainer />
+                    <ChartView />
                 </Paper>
             </div>
         );

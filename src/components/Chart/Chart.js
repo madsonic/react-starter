@@ -6,13 +6,14 @@ class Chart extends Component {
 
     render() {
         const { data } = this.props;
+        console.log(data)
 
         return(
             <LineChart
                 data={data}
                 width={800}
                 height={400}
-                margin={{ top:50, bottom:20, left:10, right:50 }}
+                margin={{ top:20, bottom:20, left:10, right:50 }}
                 >
                 <XAxis dataKey='date' padding={{ left:20, right:20 }} />
                 <YAxis padding={{ bottom:10 }} />
