@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const { resolve } = require('path');
+const path = require('path');
 
 const config = {
     entry: [
@@ -18,9 +19,15 @@ const config = {
     module: {
         rules: [
             {
+                enforce: "pre",
                 test: /\.(js|jsx)$/,
-                use: 'babel-loader',
-                exclude: '/node_modules/',
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
             },
             {
                 test: /\.css$/,
@@ -30,7 +37,7 @@ const config = {
                     'postcss-loader',
                 ]
             },
-        ],
+        ]
     },
     devServer: {
         contentBase: resolve(__dirname, 'dist'),
@@ -41,6 +48,15 @@ const config = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                eslint: {
+                    failOnWarning: false,
+                    failOnError: true,
+                    configFile: './.eslintrc'
+                }
+            }
+        })
     ]
 };
 
