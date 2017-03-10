@@ -1,25 +1,28 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { AutoComplete } from 'material-ui';
 
-class SearchBar extends Component {
-    render() {
-        const dataSourceConfig = {
-            text: 'name',
-            value: 'value'
-        };
+const SearchBar = (props) => {
+  const dataSourceConfig = {
+    text: 'name',
+    value: 'value',
+  };
 
-        const { hotels } = this.props;
+  const { hotels } = props;
 
-        return (
-            <AutoComplete
-                dataSource={ hotels }
-                dataSourceConfig={ dataSourceConfig }
-                onNewRequest={ (chosenRequest, index) => this.props.handleNewRequest(chosenRequest, index) }
-                filter={ AutoComplete.fuzzyFilter }
-                floatingLabelText='Search Hotels'
-                />
-        );
-    }
-}
+  return (
+    <AutoComplete
+      dataSource={hotels}
+      dataSourceConfig={dataSourceConfig}
+      onNewRequest={(chosenRequest, index) => props.handleNewRequest(chosenRequest, index)}
+      filter={AutoComplete.fuzzyFilter}
+      floatingLabelText="Search Hotels"
+    />
+  );
+};
+
+SearchBar.propTypes = {
+  hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleNewRequest: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
