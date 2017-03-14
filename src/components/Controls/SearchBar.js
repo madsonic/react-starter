@@ -13,7 +13,6 @@ const SearchBar = (props) => {
     <AutoComplete
       dataSource={hotels}
       dataSourceConfig={dataSourceConfig}
-      onNewRequest={(chosenRequest, index) => props.handleNewRequest(chosenRequest, index)}
       filter={AutoComplete.fuzzyFilter}
       floatingLabelText="Search Hotels"
     />
@@ -22,7 +21,6 @@ const SearchBar = (props) => {
 
 SearchBar.propTypes = {
   hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleNewRequest: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

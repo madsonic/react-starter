@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { AppContainer } from 'react-hot-loader';
 // AppContainer is a necessary wrapper component for HMR
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import reducers from './store/reducers';
 
-import reducers from './components/reducers';
 import App from './components/App';
 
 /*eslint-disable */
@@ -23,7 +23,6 @@ const render = (Component) => {
   );
 };
 
-store.subscribe(render);
 render(App);
 
 // Hot Module Replacement API

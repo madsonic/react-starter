@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChartContainer from './ChartContainer';
-import FilterForm from '../FilterForm/FilterForm';
+import ControlsContainer from '../Controls/ControlsContainer';
 import classes from './ChartContainer.css';
 
 class ChartView extends Component {
@@ -33,17 +33,11 @@ class ChartView extends Component {
     };
   }
 
-  handleNewRequest(chosenRequest, index) {
-    console.log(this);
-    console.log(chosenRequest);
-    console.log(index);
-  }
-
   render() {
     return (
       <div className={classes.chartContainer}>
-        <FilterForm handleNewRequest={(chosenRequest, index) => { this.handleNewRequest(chosenRequest, index); }} />
-        <ChartContainer data={this.state.hotels[1].prices} />
+        <ControlsContainer />
+        <ChartContainer />
       </div>
     );
   }

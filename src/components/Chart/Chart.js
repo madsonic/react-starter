@@ -4,7 +4,7 @@ import { indigo300, blue300, teal300, grey200 } from 'material-ui/styles/colors'
 
 const Chart = props =>
   <LineChart
-    data={props.data}
+    data={props.hotels[0].prices}
     width={800}
     height={400}
     margin={{ top: 20, bottom: 20, left: 10, right: 50 }}
@@ -20,7 +20,7 @@ const Chart = props =>
   </LineChart>;
 
 Chart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Chart;
