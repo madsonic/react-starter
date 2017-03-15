@@ -6,10 +6,13 @@ class ControlsForm extends Component {
   static propTypes = {
     hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
     dateRanges: PropTypes.arrayOf(PropTypes.object).isRequired,
+    roomTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
     selectedHotel: PropTypes.number.isRequired,
     selectedDateRange: PropTypes.number.isRequired,
+    selectedRoomType: PropTypes.number.isRequired,
     selectHotel: PropTypes.func.isRequired,
     selectDateRange: PropTypes.func.isRequired,
+    selectRoomType: PropTypes.func.isRequired,
     getHotels: PropTypes.func.isRequired,
   }
 
@@ -25,12 +28,18 @@ class ControlsForm extends Component {
     this.props.selectDateRange({ selectedDateRange: value });
   }
 
+  handleSelectRoomType = (event, key, value) => {
+    this.props.selectRoomType({ selectedRoomType: value });
+  }
+
   render() {
     const {
       hotels,
       dateRanges,
+      roomTypes,
       selectedHotel,
       selectedDateRange,
+      selectedRoomType,
     } = this.props;
 
     const getDateRange = (start, end) => (
@@ -43,7 +52,13 @@ class ControlsForm extends Component {
           value={hotels.filter(hotel => hotel.id === selectedHotel)[0].id}
           onChange={this.handleSelectHotel}
         >
-          {hotels.map(hotel => (<MenuItem key={hotel.id} value={hotel.id} primaryText={hotel.name} />))}
+          {hotels.map(hotel => (
+            <MenuItem
+              key={hotel.id}
+              value={hotel.id}
+              primaryText={hotel.name}
+            />
+          ))}
         </DropDownMenu>
 
         <DropDownMenu
@@ -59,8 +74,19 @@ class ControlsForm extends Component {
           ))}
         </DropDownMenu>
 
+        <DropDownMenu
+          value={roomTypes.filter(roomType => roomType.id === selectedRoomType)[0].id}
+          onChange={this.handleSelectRoomType}
+        >
+          {roomTypes.map(roomType => (
+            <MenuItem
+              key={roomType.id}
+              value={roomType.id}
+              primaryText={roomType.name}
+            />
+          ))}
+        </DropDownMenu>
       </div>
-
     );
   }
 }

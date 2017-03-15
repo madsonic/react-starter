@@ -1,20 +1,21 @@
 import { connect } from 'react-redux';
 import ControlsForm from './ControlsForm';
-import { getHotels, getDateRange, selectHotel, selectDateRange } from '../../actions/index';
+import { getHotels, selectHotel, selectDateRange, selectRoomType } from '../../actions/index';
 
 const mapStateToProps = state => ({
   hotels: state.hotels,
   dateRanges: state.dateRanges,
-  providers: state.providers,
+  roomTypes: state.roomTypes,
   selectedHotel: state.selectedHotel,
   selectedDateRange: state.selectedDateRange,
+  selectedRoomType: state.selectedRoomType,
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectHotel: payload => (dispatch(selectHotel(payload))),
-  onSelectStartDate: () => dispatch(getDateRange()),
   getHotels: () => dispatch(getHotels()),
+  selectHotel: payload => (dispatch(selectHotel(payload))),
   selectDateRange: payload => (dispatch(selectDateRange(payload))),
+  selectRoomType: payload => (dispatch(selectRoomType(payload))),
 });
 
 
