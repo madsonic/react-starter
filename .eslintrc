@@ -5,7 +5,19 @@
     "es6": true,
     "node": true
   },
-  "extends": "airbnb",
+  "plugin": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "rules": {
     "indent": [
         "error",
@@ -22,9 +34,9 @@
     "no-console": 0,
     "no-param-reassign": 0,
     "react/jsx-filename-extension": [
-      1, 
-      { 
-        "extensions": [".js", ".jsx"] 
+      1,
+      {
+        "extensions": [".js", ".jsx"]
       }
     ]
   }
