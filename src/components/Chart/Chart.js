@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
-import { LineChart, XAxis, YAxis, Line, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { indigo300, blue300, grey200 } from 'material-ui/styles/colors';
+import {
+  LineChart, XAxis, YAxis, Line,
+  CartesianGrid, Tooltip, Legend } from 'recharts';
+import {
+  indigo300, red300, blue300,
+  pink300, cyan300, lime300, grey200 } from 'material-ui/styles/colors';
 import moment from 'moment';
 import classes from './Chart.css';
 
+const CHART_COLORS = [indigo300, red300, blue300, pink300, cyan300, lime300];
+
 const Chart = props => {
-  console.log(props.prices);
   return (<div className={classes.chart}>
     <LineChart
       data={props.prices}
@@ -27,18 +32,15 @@ const Chart = props => {
         height={20}
       />
       <Tooltip />
-      <Line
-        type="monotone"
-        dataKey="expedia"
-        stroke={blue300}
-        strokeWidth={3}
-      />
-      <Line
-          type="monotone"
-          dataKey="zumata"
-          stroke={indigo300}
-          strokeWidth={3}
-        />
+      {props.providers.map((provider, i) => {
+        return (
+          <Line key={i}
+            type="monotone"
+            dataKey={provider}
+            stroke={CHART_COLORS[i]}
+            strokeWidth={3}
+          />);
+      })}
     </LineChart>
   </div>);
 };
