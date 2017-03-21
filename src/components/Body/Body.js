@@ -9,7 +9,6 @@ const Body = () => {
     height: 600,
     width: 900,
     margin: 20,
-    textAlign: 'center',
   };
 
   return (
