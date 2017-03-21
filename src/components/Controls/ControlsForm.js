@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { DropDownMenu, MenuItem } from 'material-ui';
+import { SelectField, MenuItem } from 'material-ui';
 import moment from 'moment';
 import classes from './ControlsForm.css';
 
@@ -56,7 +56,9 @@ class ControlsForm extends Component {
 
     return (
       <div className={classes.form}>
-        <DropDownMenu
+        <SelectField
+          autoWidth={true}
+          floatingLabelText="Hotel"
           value={hotels.length ? hotels.filter(hotel => hotel.id === selectedHotel)[0].id : null}
           onChange={this.handleSelectHotel}
         >
@@ -67,9 +69,11 @@ class ControlsForm extends Component {
               primaryText={hotel.name}
             />
           ))}
-        </DropDownMenu>
+        </SelectField>
 
-        <DropDownMenu
+        <SelectField
+          autoWidth={true}
+          floatingLabelText="Date"
           value={dateRanges.length ? dateRanges.filter(dateRange => dateRange.id === selectedDateRange)[0].id : null}
           onChange={this.handleSelectDateRange}
         >
@@ -80,9 +84,10 @@ class ControlsForm extends Component {
               primaryText={getDateRange(range.start, range.end)}
             />
           ))}
-        </DropDownMenu>
+        </SelectField>
 
-        <DropDownMenu
+        <SelectField
+          floatingLabelText="Room Type"
           value={roomTypes.length ? roomTypes.filter(roomType => roomType.id === selectedRoomType)[0].id : null}
           onChange={this.handleSelectRoomType}
           style={{ width: 300 }}
@@ -95,7 +100,7 @@ class ControlsForm extends Component {
               primaryText={roomType.name}
             />
           ))}
-        </DropDownMenu>
+        </SelectField>
       </div>
     );
   }

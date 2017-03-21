@@ -22,25 +22,26 @@ const Chart = props => {
       <XAxis
         label="Date"
         dataKey="timestamp"
-        tickFormatter={v => moment(v).format('M/D/YY')}
+        tickFormatter={(timestamp) => moment(timestamp).format('M/D/YY H:mm')}
         padding={{ left: 20, right: 20 }}
       />
-      <YAxis label="Price" padding={{ bottom: 10, top: 10 }} />
+      <YAxis label="Price ($)" padding={{ bottom: 10, top: 10 }} />
       <CartesianGrid strokeDasharray="0 0" stroke={grey200} />
       <Legend
         verticalAlign="top"
         height={20}
       />
-      <Tooltip />
-      {props.providers.map((provider, i) => {
-        return (
-          <Line key={i}
-            type="monotone"
-            dataKey={provider}
-            stroke={CHART_COLORS[i]}
-            strokeWidth={3}
-          />);
-      })}
+      <Tooltip
+        labelFormatter={(timestamp) => moment(timestamp).format('MMM D YYYY, H:mm')}
+        formatter={(v) => `$${v}`}/>
+      {props.providers.map((provider, i) =>
+        <Line key={i}
+          type="monotone"
+          dataKey={provider}
+          stroke={CHART_COLORS[i]}
+          strokeWidth={3}
+        />
+      )}
     </LineChart>
   </div>);
 };
