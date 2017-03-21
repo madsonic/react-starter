@@ -29,7 +29,6 @@ app.get('/hotels', (req, res) => {
 });
 
 app.get('/hotels/:id/rooms', (req, res) => {
-  const id = req.params.id;
   return res.send(require('./rooms.json'));
 });
 
@@ -40,8 +39,7 @@ app.get('/booking_ranges', (req, res) => {
 app.get('/prices/search', (req, res) => {
   const roomId = req.query.roomId;
   const bookingRangeId = req.query.bookingRangeId;
-
-  return res.status(404).send();
+  return res.send(require('./prices.json'));
 });
 
 app.param('vendorTicker', (req, res, next, ticker) => {

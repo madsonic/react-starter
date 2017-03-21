@@ -7,7 +7,7 @@ import ChartView from '../Chart/ChartView';
 const Body = () => {
   const style = {
     height: 600,
-    width: 800,
+    width: 900,
     margin: 20,
     textAlign: 'center',
   };

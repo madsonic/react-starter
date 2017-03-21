@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 // AppContainer is a necessary wrapper component for HMR
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
@@ -8,10 +9,12 @@ import reducers from './store/reducers';
 
 import App from './components/App';
 
-/*eslint-disable */
 const MOUNT_ELEMENT = document.getElementById('root');
-/*eslint-enable */
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);
+
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>

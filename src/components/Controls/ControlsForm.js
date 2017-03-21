@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DropDownMenu, MenuItem } from 'material-ui';
 import moment from 'moment';
+import classes from './ControlsForm.css';
 
 class ControlsForm extends Component {
   static propTypes = {
@@ -10,26 +11,33 @@ class ControlsForm extends Component {
     selectedHotel: PropTypes.number.isRequired,
     selectedDateRange: PropTypes.number.isRequired,
     selectedRoomType: PropTypes.number.isRequired,
-    selectHotel: PropTypes.func.isRequired,
+    submitSelectedHotel: PropTypes.func.isRequired,
     selectDateRange: PropTypes.func.isRequired,
     selectRoomType: PropTypes.func.isRequired,
     getHotels: PropTypes.func.isRequired,
+    getDateRanges: PropTypes.func.isRequired,
+    submitSearch: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
     this.props.getHotels();
+    this.props.getDateRanges();
+    this.props.submitSearch(this.props.selectedRoomType, this.props.selectedDateRange);
   }
 
   handleSelectHotel = (event, key, value) => {
-    this.props.selectHotel({ selectedHotel: value });
+    this.props.submitSelectedHotel({ selectedHotel: value });
+    this.props.submitSearch(this.props.selectedRoomType, this.props.selectedDateRange);
   }
 
   handleSelectDateRange = (event, key, value) => {
     this.props.selectDateRange({ selectedDateRange: value });
+    this.props.submitSearch(this.props.selectedRoomType, this.props.selectedDateRange);
   }
 
   handleSelectRoomType = (event, key, value) => {
     this.props.selectRoomType({ selectedRoomType: value });
+    this.props.submitSearch(this.props.selectedRoomType, this.props.selectedDateRange);
   }
 
   render() {
@@ -47,9 +55,9 @@ class ControlsForm extends Component {
     );
 
     return (
-      <div>
+      <div className={classes.form}>
         <DropDownMenu
-          value={hotels.filter(hotel => hotel.id === selectedHotel)[0].id}
+          value={hotels.length ? hotels.filter(hotel => hotel.id === selectedHotel)[0].id : null}
           onChange={this.handleSelectHotel}
         >
           {hotels.map(hotel => (
@@ -62,7 +70,7 @@ class ControlsForm extends Component {
         </DropDownMenu>
 
         <DropDownMenu
-          value={dateRanges.filter(dateRange => dateRange.id === selectedDateRange)[0].id}
+          value={dateRanges.length ? dateRanges.filter(dateRange => dateRange.id === selectedDateRange)[0].id : null}
           onChange={this.handleSelectDateRange}
         >
           {dateRanges.map(range => (
@@ -75,8 +83,10 @@ class ControlsForm extends Component {
         </DropDownMenu>
 
         <DropDownMenu
-          value={roomTypes.filter(roomType => roomType.id === selectedRoomType)[0].id}
+          value={roomTypes.length ? roomTypes.filter(roomType => roomType.id === selectedRoomType)[0].id : null}
           onChange={this.handleSelectRoomType}
+          style={{ width: 300 }}
+          autoWidth={false}
         >
           {roomTypes.map(roomType => (
             <MenuItem
