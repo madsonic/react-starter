@@ -1,4 +1,4 @@
-#React Starter
+# React Starter
 To get all dependencies
 `npm install`
 
